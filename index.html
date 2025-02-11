@@ -12,9 +12,9 @@
             color: #fff;
             font-family: 'Montserrat', sans-serif;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            justify-content: center; /* Centrar horizontalmente */
+            align-items: center; /* Centrar verticalmente */
+            min-height: 100vh; /* Asegurar que el cuerpo ocupa toda la pantalla */
             text-align: center;
         }
         .container {
@@ -27,19 +27,19 @@
             text-transform: uppercase;
         }
         .glitch::before, .glitch::after {
-            content: attr(data-text);
+            
             position: absolute;
             left: 0;
             top: 0;
             opacity: 0.8;
-            animation: glitch 0.2s linear infinite alternate; /* Animación para ambos pseudo-elementos */
+
         }
         .glitch::before {
             color: #ff004f;
         }
         .glitch::after {
             color: #00c3ff;
-            animation-delay: 0.1s; /* Retardo en la animación del segundo pseudo-elemento */
+            animation-delay: 0.1s;
         }
         .contacto {
             font-size: 1rem;
@@ -56,12 +56,21 @@
             0% { transform: translate(-2px, -2px); }
             100% { transform: translate(2px, 2px); }
         }
+
+        /*  Eliminamos la retícula y centramos directamente en el body */
+
+        /* Estilos para diferentes tamaños de pantalla */
+        @media (max-width: 768px) {
+            .glitch {
+                font-size: 1.5rem; /* Reducir el tamaño de la fuente en pantallas pequeñas */
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="glitch" data-text="Somos Zoe Plus">Somos Zoe Plus</div>
-        <p class="contacto">Tratamos de solucionar problemas con la mejor tecnología para tu presupuesto.<br> Escríbenos a <a href="mailto:hi@zoeplus.com">hi@zoeplus.com</a></p>
+        <div class="glitch" data-text="Zoe Plus">Zoe Plus</div>
+        <p class="contacto">Tratamos de solucionar problemas con la mejor tecnología para tu presupuesto.<br> Escríbenos a <a href="mailto:hi@zoeplus.com">📧</a></p>
     </div>
 </body>
 </html>
