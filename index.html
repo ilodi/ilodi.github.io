@@ -1,94 +1,104 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zoe-Plus</title>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Open Sans', sans-serif;
-      background-color: #EAEBDD;
-      color: #3C3C2E;
-      margin: 0;
-      padding: 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Somos Zoe Plus</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap');
 
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-      text-align: center;
-    }
-
-    .title {
-      font-size: 2rem;
-      color: #FC0317;
-      margin-bottom: 10px;
-    }
-
-    .subtitle {
-      font-size: 1.25rem;
-      margin-bottom: 20px;
-    }
-
-    .content {
-      font-size: 1rem;
-      line-height: 1.6;
-      text-align: left;
-    }
-
-    ul {
-      list-style-type: none;
-      padding: 0;
-    }
-
-    ul li {
-      margin-bottom: 10px;
-    }
-
-    ul li::before {
-      content: "✔️";
-      margin-right: 8px;
-      color: #FC0317;
-    }
-
-    @media (max-width: 600px) {
-      .title {
-        font-size: 1.5rem;
-      }
-
-      .subtitle {
-        font-size: 1rem;
-      }
-
-      .content {
-        font-size: 0.9rem;
-      }
-    }
-  </style>
+        body {
+            background: #0a0a0a;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+      .container {
+            position: relative;
+        }
+      .glitch {
+            font-size: 2rem;
+            font-weight: 700;
+            position: relative;
+            text-transform: uppercase;
+        }
+      .glitch::before,.glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0.8;
+            transition: transform 0.1s ease-in-out; /* Add transition for smoother effect */
+        }
+      .glitch::before {
+            color: #ff004f;
+        }
+      .glitch::after {
+            color: #00c3ff;
+        }
+      .contacto {
+            font-size: 1rem;
+            margin-top: 10px;
+            color: #aaa;
+        }
+        a {
+            color: #00c3ff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1 class="title">Zoe-Plus</h1>
-    <p class="subtitle">
-      Somos expertos en el desarrollo de proyectos digitales integrales.
-    </p>
-    <div class="content">
-      <p>
-        Ofrecemos una amplia gama de servicios, que incluyen:
-      </p>
-      <ul>
-        <li>Estrategias de marketing</li>
-        <li>Diseño y branding</li>
-        <li>Fotografía profesional para eventos</li>
-        <li>Marketing de productos e influencers</li>
-        <li>Asesoría para convertir tus ideas de negocios digitales en realidad a través de estudios de mercado y análisis de la competencia</li>
-      </ul>
-      <p>
-        Nuestro compromiso es brindarte soluciones personalizadas que se adapten a tus necesidades y objetivos.
-      </p>
+    <div class="container">
+        <div class="glitch" data-text="Somos Zoe Plus">Somos Zoe Plus</div>
+        <p class="contacto">Tratamos de solucionar problemas con la mejor tecnología para tu presupuesto.<br> Escríbenos a <a href="mailto:contacto@zoeplus.com">contacto@zoeplus.com</a></p>
     </div>
-  </div>
+
+    <script>
+        const glitch = document.querySelector('.glitch');
+
+        gsap.timeline({ repeat: -1 }) // Use a timeline for better control
+          .to(glitch.style, {
+                '--before-x': '2px',
+                '--before-y': '2px',
+                duration: 0.1,
+                onUpdate: () => {
+                    glitch.style.setProperty('--before-transform', `translate(${glitch.style.getPropertyValue('--before-x')}, ${glitch.style.getPropertyValue('--before-y')})`);
+                }
+            })
+          .to(glitch.style, {
+                '--before-x': '-2px',
+                '--before-y': '-2px',
+                duration: 0.1,
+                onUpdate: () => {
+                    glitch.style.setProperty('--before-transform', `translate(${glitch.style.getPropertyValue('--before-x')}, ${glitch.style.getPropertyValue('--before-y')})`);
+                }
+            })
+          .to(glitch.style, {
+                '--after-x': '-2px',
+                '--after-y': '-2px',
+                duration: 0.1,
+                onUpdate: () => {
+                    glitch.style.setProperty('--after-transform', `translate(${glitch.style.getPropertyValue('--after-x')}, ${glitch.style.getPropertyValue('--after-y')})`);
+                }
+            })
+          .to(glitch.style, {
+                '--after-x': '2px',
+                '--after-y': '2px',
+                duration: 0.1,
+                onUpdate: () => {
+                    glitch.style.setProperty('--after-transform', `translate(${glitch.style.getPropertyValue('--after-x')}, ${glitch.style.getPropertyValue('--after-y')})`);
+                }
+            });
+
+        glitch.style.setProperty('--before-transform', 'translate(-2px, -2px)');
+        glitch.style.setProperty('--after-transform', 'translate(2px, 2px)');
+
+    </script>
 </body>
 </html>
