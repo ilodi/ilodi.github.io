@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Somos Zoe Plus</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap');
 
@@ -33,12 +32,14 @@
             left: 0;
             top: 0;
             opacity: 0.8;
+            animation: glitch 0.2s linear infinite alternate; /* Animación para ambos pseudo-elementos */
         }
         .glitch::before {
             color: #ff004f;
         }
         .glitch::after {
             color: #00c3ff;
+            animation-delay: 0.1s; /* Retardo en la animación del segundo pseudo-elemento */
         }
         .contacto {
             font-size: 1rem;
@@ -50,6 +51,11 @@
             text-decoration: none;
             font-weight: bold;
         }
+
+        @keyframes glitch {
+            0% { transform: translate(-2px, -2px); }
+            100% { transform: translate(2px, 2px); }
+        }
     </style>
 </head>
 <body>
@@ -57,31 +63,5 @@
         <div class="glitch" data-text="Somos Zoe Plus">Somos Zoe Plus</div>
         <p class="contacto">Tratamos de solucionar problemas con la mejor tecnología para tu presupuesto.<br> Escríbenos a <a href="mailto:hi@zoeplus.com">hi@zoeplus.com</a></p>
     </div>
-
-    <script>
-        const glitch = document.querySelector('.glitch');
-        const glitchBefore = glitch.querySelector(':before');
-        const glitchAfter = glitch.querySelector(':after');
-
-        anime({
-            targets: glitchBefore,
-            translateX: [-2, 2],
-            translateY: [-2, 2],
-            duration: 200,
-            easing: 'linear',
-            direction: 'alternate',
-            loop: true
-        });
-
-        anime({
-            targets: glitchAfter,
-            translateX: [2, -2],
-            translateY: [2, -2],
-            duration: 200,
-            easing: 'linear',
-            direction: 'alternate',
-            loop: true
-        });
-    </script>
 </body>
 </html>
