@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Somos Zoe Plus</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap');
-
+        
         body {
             background: #0a0a0a;
             color: #fff;
             font-family: 'Montserrat', sans-serif;
             display: flex;
-            justify-content: center; /* Centrar horizontalmente */
-            align-items: center; /* Centrar verticalmente */
-            min-height: 100vh; /* Asegurar que el cuerpo ocupa toda la pantalla */
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             text-align: center;
         }
         .container {
@@ -27,19 +28,19 @@
             text-transform: uppercase;
         }
         .glitch::before, .glitch::after {
-            
+            content: attr(data-text);
             position: absolute;
             left: 0;
             top: 0;
             opacity: 0.8;
-
         }
         .glitch::before {
             color: #ff004f;
+            transform: translate(-2px, -2px);
         }
         .glitch::after {
             color: #00c3ff;
-            animation-delay: 0.1s;
+            transform: translate(2px, 2px);
         }
         .contacto {
             font-size: 1rem;
@@ -51,26 +52,17 @@
             text-decoration: none;
             font-weight: bold;
         }
-
-        @keyframes glitch {
-            0% { transform: translate(-2px, -2px); }
-            100% { transform: translate(2px, 2px); }
-        }
-
-        /*  Eliminamos la retícula y centramos directamente en el body */
-
-        /* Estilos para diferentes tamaños de pantalla */
-        @media (max-width: 768px) {
-            .glitch {
-                font-size: 1.5rem; /* Reducir el tamaño de la fuente en pantallas pequeñas */
-            }
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="glitch" data-text="Zoe Plus">Zoe Plus</div>
-        <p class="contacto">Tratamos de solucionar problemas con la mejor tecnología para tu presupuesto.<br> Escríbenos a <a href="mailto:hi@zoeplus.com">📧</a></p>
+        <p class="contacto">Tratamos de solucionar problemas con la mejor tecnología para tu presupuesto.<br> Escríbenos a <a href="mailto:hi@zoeplus.com">hi@zoeplus.com</a></p>
     </div>
+    
+    <script>
+        gsap.to(".glitch::before", { x: "2px", y: "2px", repeat: -1, yoyo: true, duration: 0.1 });
+        gsap.to(".glitch::after", { x: "-2px", y: "-2px", repeat: -1, yoyo: true, duration: 0.1 });
+    </script>
 </body>
 </html>
